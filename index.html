@@ -3,17 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' data: https://cdnjs.cloudflare.com; worker-src 'self' blob:;">
     <title>Intérprete Qdraw - UNQ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/editor/editor.main.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Mobile Warning -->
+    <div id="mobileWarning" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 10000; padding: 20px; box-sizing: border-box;">
+        <div style="max-width: 500px; margin: 50px auto; background: #1e1e1e; border: 2px solid #ff9800; border-radius: 10px; padding: 30px; text-align: center;">
+            <h2 style="color: #ff9800; margin-bottom: 20px;">📱 Dispositivo móvil detectado</h2>
+            <p style="color: #fff; font-size: 16px; line-height: 1.6; margin-bottom: 20px;">
+                El intérprete Qdraw requiere una pantalla de computadora para funcionar correctamente debido a la complejidad de la interfaz.
+            </p>
+            <p style="color: #aaa; font-size: 14px; margin-bottom: 30px;">
+                Próximamente adaptaremos la herramienta para dispositivos móviles. ¡Gracias por tu comprensión!
+            </p>
+            <a href="https://github.com/Reader10/Interprete-Qdraw" style="display: inline-block; background: #007acc; color: #fff; padding: 12px 30px; border-radius: 5px; text-decoration: none; font-weight: bold;">
+                Ver en GitHub
+            </a>
+        </div>
+    </div>
+    
     <div class="container">
         <!-- Header -->
         <header class="header">
             <h1>🎨 Intérprete Qdraw</h1>
             <p class="subtitle">Elementos de Programación y Lógica - Universidad Nacional de Quilmes</p>
+            <p class="subtitle" style="color: #ff9800; font-size: 0.9em; margin-top: 0.5em;">
+                ⚠️ Versión Beta - Si encontrás errores, por favor <a href="https://github.com/Reader10/Interprete-Qdraw/issues" target="_blank" style="color: #ff9800; text-decoration: underline;">abrí un issue en GitHub</a>
+            </p>
         </header>
 
         <!-- Main Content -->
@@ -93,6 +111,22 @@
             <p>© 2025 Intérprete Qdraw - EPyL (UNQ) | 💡 Shift + Click en tablero para mover cabezal</p>
         </footer>
     </div>
+
+    <!-- Mobile Detection Script (debe ejecutarse inmediatamente) -->
+    <script>
+        (function() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile|samsung/i;
+            const isSmallScreen = window.innerWidth < 768;
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            
+            if (mobileRegex.test(userAgent.toLowerCase()) || (isSmallScreen && isTouchDevice)) {
+                document.getElementById('mobileWarning').style.display = 'block';
+                // Ocultar el contenedor principal
+                document.querySelector('.container').style.display = 'none';
+            }
+        })();
+    </script>
 
     <!-- Monaco Editor -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
