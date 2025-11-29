@@ -1,0 +1,64 @@
+# Archivos de desarrollo y sistema
+*.log
+*.tmp
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# IDEs y editores
+.vscode/
+.idea/
+*.sublime-*
+*.code-workspace
+
+# Node.js (si se usa localmente)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+
+# Python (si se usa servidor local)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+
+# Archivos de backup
+*.bak
+*.backup
+*_backup_*
+
+# Archivos temporales del sistema
+*.cache
+*.temp
+
+# Git
+.git/
+.gitattributes
+
+# Archivos de deployment temporal
+*.zip
+*.tar
+*.tar.gz
+*.rar
+
+# Archivos privados o sensibles (por si acaso)
+*.env
+.env.local
+.env.*.local
+secrets.txt
+config.private.js
+
+# Archivos de testing opcionales
+coverage/
+.nyc_output/
+
+# Build artifacts (si usas bundlers en el futuro)
+dist/
+build/

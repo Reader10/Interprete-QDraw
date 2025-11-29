@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; font-src 'self' data: https://cdnjs.cloudflare.com; worker-src 'self' blob:;">
+    <title>Intérprete Qdraw - UNQ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/editor/editor.main.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎨 Intérprete Qdraw</h1>
+            <p class="subtitle">Elementos de Programación y Lógica - Universidad Nacional de Quilmes</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Panel Izquierdo: Editor -->
+            <div class="editor-panel">
+                <div class="panel-header">
+                    <h2>📝 Editor de Código</h2>
+                    <div class="file-actions">
+                        <button id="exportBtn" class="btn btn-file" title="Exportar código">💾 Guardar</button>
+                        <button id="importBtn" class="btn btn-file" title="Importar código">📂 Abrir</button>
+                        <input type="file" id="fileInput" accept=".qdraw,.txt" style="display: none;">
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <div id="monacoEditor"></div>
+                </div>
+            </div>
+
+            <!-- Panel Derecho: Tablero y Controles -->
+            <div class="board-panel">
+                <!-- Controles -->
+                <div class="controls">
+                    <div class="control-group">
+                        <button id="runBtn" class="btn btn-primary">▶️ Ejecutar</button>
+                        <button id="stopBtn" class="btn btn-danger" style="display:none;">⏹️ Detener</button>
+                        <button id="resetBtn" class="btn btn-secondary">🔄 Reset</button>
+                        <button id="toggleViewBtn" class="btn btn-secondary" style="display:none;">🔄 Ver Inicial</button>
+                    </div>
+                    <div class="control-group">
+                        <label for="speedControl">Velocidad:</label>
+                        <select id="speedControl">
+                            <option value="1">Lento</option>
+                            <option value="3" selected>Normal</option>
+                            <option value="7">Rápido</option>
+                            <option value="0">Instantáneo</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label for="widthInput">Ancho:</label>
+                        <input type="number" id="widthInput" min="1" max="30" value="8">
+                        <label for="heightInput">Alto:</label>
+                        <input type="number" id="heightInput" min="1" max="30" value="8">
+                        <button id="resizeBtn" class="btn btn-small">Redimensionar</button>
+                    </div>
+                </div>
+
+                <!-- Contenedor del Tablero -->
+                <div class="board-container">
+                    <div class="board-wrapper">
+                        <div id="board" class="board"></div>
+                    </div>
+                </div>
+
+                <!-- Panel de Estado -->
+                <div class="status-panel">
+                    <div class="status-header">
+                        <h3>📊 Estado</h3>
+                        <span id="statusIndicator" class="status-indicator status-editing">Edición</span>
+                    </div>
+                    <div class="status-content">
+                        <div class="status-item">
+                            <span class="label">Cabezal:</span>
+                            <span id="headPosition" class="value">(0, 0)</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="label">Mensaje:</span>
+                            <span id="statusMessage" class="value">Listo para ejecutar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>© 2025 Intérprete Qdraw - EPyL (UNQ) | 💡 Shift + Click en tablero para mover cabezal</p>
+        </footer>
+    </div>
+
+    <!-- Monaco Editor -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+    <script src="interpreter.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,721 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #2d2d2d;
+    min-height: 100vh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #1e1e1e;
+}
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.header {
+    background: linear-gradient(135deg, #c62828 0%, #b71c1c 100%);
+    color: white;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 100;
+}
+
+.header h1 {
+    font-size: 1.3em;
+    margin: 0;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 0.85em;
+    opacity: 0.95;
+    margin-left: 20px;
+    font-weight: 400;
+}
+
+/* =====================================================
+   CONTENIDO PRINCIPAL
+   ===================================================== */
+
+.main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    flex: 1;
+    overflow: hidden;
+    background: #252526;
+}
+
+/* =====================================================
+   PANEL DEL EDITOR
+   ===================================================== */
+
+.editor-panel {
+    display: flex;
+    flex-direction: column;
+    background: #1e1e1e;
+    border-right: 1px solid #3e3e42;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: #2d2d30;
+    border-bottom: 1px solid #3e3e42;
+}
+
+.panel-header h2 {
+    color: #cccccc;
+    font-size: 1.1em;
+    margin: 0;
+    font-weight: 600;
+}
+
+.file-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-file {
+    padding: 6px 12px;
+    font-size: 0.85em;
+    background: #007acc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-file:hover {
+    background: #005a9e;
+    transform: translateY(-1px);
+}
+
+.btn-file:active {
+    transform: translateY(0);
+}
+
+.btn-example {
+    background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+}
+
+.btn-example:hover {
+    background: linear-gradient(135deg, #7b1fa2 0%, #6a1b9a 100%);
+}
+
+.editor-container {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    background: #1e1e1e;
+}
+
+#monacoEditor {
+    width: 100%;
+    height: 100%;
+}
+
+/* Estilos de error de Monaco Editor */
+.error-line {
+    background: rgba(255, 76, 76, 0.1) !important;
+    border-left: 3px solid #f44336 !important;
+}
+
+.error-glyph {
+    background: #f44336;
+    width: 4px !important;
+    margin-left: 3px;
+}
+
+/* =====================================================
+   PANEL DEL TABLERO
+   ===================================================== */
+
+.board-panel {
+    display: flex;
+    flex-direction: column;
+    background: #252526;
+    overflow: hidden;
+}
+
+/* =====================================================
+   CONTROLES
+   ===================================================== */
+
+.controls {
+    background: #2d2d30;
+    padding: 12px 15px;
+    border-bottom: 1px solid #3e3e42;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.control-group label {
+    font-weight: 600;
+    color: #cccccc;
+    font-size: 0.9em;
+}
+
+/* =====================================================
+   BOTONES
+   ===================================================== */
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #da190b 0%, #c62828 100%);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #e64a19 0%, #d84315 100%);
+}
+
+.btn-small {
+    padding: 6px 12px;
+    font-size: 0.9em;
+    background: linear-gradient(135deg, #2196f3 0%, #0b7dda 100%);
+    color: white;
+}
+
+.btn-small:hover {
+    background: linear-gradient(135deg, #0b7dda 0%, #0069c0 100%);
+}
+
+/* =====================================================
+   ENTRADAS
+   ===================================================== */
+
+input[type="number"] {
+    width: 60px;
+    padding: 6px 8px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 0.9em;
+    background: #3e3e42;
+    color: #cccccc;
+    transition: border-color 0.2s;
+}
+
+input[type="number"]:focus {
+    outline: none;
+    border-color: #007acc;
+}
+
+select {
+    padding: 6px 10px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 0.9em;
+    background: #3e3e42;
+    color: #cccccc;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+select:focus {
+    outline: none;
+    border-color: #007acc;
+}
+
+/* =====================================================
+   CONTENEDOR DEL TABLERO
+   ===================================================== */
+
+.board-container {
+    position: relative;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #e0e0e0 0%, #d0d0d0 100%);
+    overflow: auto;
+}
+
+.board-wrapper {
+    position: relative;
+    display: inline-block;
+    background: #f5f5f5;
+    padding: 35px;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+}
+
+.board-coordinates {
+    position: absolute;
+    font-size: 13px;
+    font-weight: 700;
+    color: #555;
+    font-family: 'Consolas', monospace;
+}
+
+.coord-top, .coord-bottom {
+    left: 35px;
+    right: 35px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.coord-top {
+    top: 8px;
+}
+
+.coord-bottom {
+    bottom: 8px;
+}
+
+.coord-left, .coord-right {
+    top: 35px;
+    bottom: 35px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.coord-left {
+    left: 8px;
+}
+
+.coord-right {
+    right: 8px;
+}
+
+.board {
+    display: grid;
+    gap: 2px;
+    background: #666;
+    padding: 2px;
+    border-radius: 4px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+/* =====================================================
+   CELDAS
+   ===================================================== */
+
+.cell {
+    width: 45px;
+    height: 45px;
+    background: white;
+    border: 1px solid #ccc;
+    position: relative;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.cell:hover {
+    border-color: #2196f3;
+    box-shadow: 0 0 8px rgba(33, 150, 243, 0.4);
+}
+
+.cell.negro {
+    background: #2c3e50;
+}
+
+.cell.rojo {
+    background: #e74c3c;
+}
+
+.cell.verde {
+    background: #27ae60;
+}
+
+.cell.head {
+    position: relative;
+    border: 4px solid #ffc107 !important;
+    box-shadow: 
+        0 0 8px rgba(255, 193, 7, 0.8),
+        0 0 16px rgba(255, 193, 7, 0.5),
+        inset 0 0 8px rgba(255, 193, 7, 0.3);
+    animation: pulse-head 1.5s infinite;
+}
+
+@keyframes pulse-head {
+    0%, 100% { 
+        border-color: #ffc107;
+        box-shadow: 
+            0 0 8px rgba(255, 193, 7, 0.8),
+            0 0 16px rgba(255, 193, 7, 0.5),
+            inset 0 0 8px rgba(255, 193, 7, 0.3);
+    }
+    50% { 
+        border-color: #ffeb3b;
+        box-shadow: 
+            0 0 12px rgba(255, 235, 59, 1),
+            0 0 24px rgba(255, 235, 59, 0.7),
+            inset 0 0 12px rgba(255, 235, 59, 0.5);
+    }
+}
+
+/* =====================================================
+   ESTADOS DEL TABLERO
+   ===================================================== */
+
+.board.executing {
+    border: 3px solid #ffc107;
+    box-shadow: 0 0 20px rgba(255, 193, 7, 0.6);
+}
+
+.no-teleport .cell {
+    cursor: not-allowed !important;
+}
+
+.teleport-enabled .cell:hover {
+    box-shadow: 0 0 12px rgba(76, 175, 80, 0.6);
+    border-color: #4caf50;
+}
+
+/* =====================================================
+   MENSAJE BOOM
+   ===================================================== */
+
+.boom-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #1e1e1e;
+    color: #ff6b6b;
+    padding: 30px 40px;
+    border-radius: 6px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 1em;
+    text-align: left;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    z-index: 1000;
+    pointer-events: none;
+    border-left: 5px solid #ff6b6b;
+    max-width: 600px;
+    min-width: 400px;
+    animation: boom-appear 0.3s ease-out;
+}
+
+@keyframes boom-appear {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.boom-message .boom-icon {
+    font-size: 1.3em;
+    margin-right: 10px;
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.boom-message .boom-title {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #ff6b6b;
+    font-family: 'Courier New', monospace;
+}
+
+.boom-message .boom-text {
+    color: #d4d4d4;
+    font-weight: normal;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+/* =====================================================
+   PANEL DE ESTADO
+   ===================================================== */
+
+.status-panel {
+    background: #2d2d30;
+    border-top: 1px solid #3e3e42;
+    padding: 12px 15px;
+}
+
+.status-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #3e3e42;
+}
+
+.status-header h3 {
+    color: #cccccc;
+    font-size: 1em;
+    margin: 0;
+    font-weight: 600;
+}
+
+.status-indicator {
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-editing {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-running {
+    background: #fff3cd;
+    color: #856404;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.status-finished {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-error {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-content {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #1e1e1e;
+    border-radius: 4px;
+    border: 1px solid #3e3e42;
+    transition: background 0.2s;
+}
+
+.status-item:hover {
+    background: #2a2a2a;
+}
+
+.status-item .label {
+    font-weight: 600;
+    color: #858585;
+    font-size: 0.9em;
+}
+
+.status-item .value {
+    color: #4ec9b0;
+    font-weight: 600;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.95em;
+}
+
+.status-item .value.error {
+    color: #f48771;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.footer {
+    background: #1e1e1e;
+    color: #858585;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.75em;
+    border-top: 1px solid #3e3e42;
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 1200px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+    
+    .editor-panel {
+        border-right: none;
+        border-bottom: 1px solid #3e3e42;
+    }
+    
+    .cell {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .board-wrapper {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 1.1em;
+    }
+    
+    .subtitle {
+        display: none;
+    }
+    
+    .controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .control-group {
+        justify-content: space-between;
+    }
+    
+    .cell {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .boom-message {
+        min-width: 300px;
+        padding: 20px 25px;
+    }
+}
+
+/* =====================================================
+   SCROLLBAR STYLING
+   ===================================================== */
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #666;
+}
+
+/* =====================================================
+   ACCESIBILIDAD
+   ===================================================== */
+
+.btn:focus,
+input:focus,
+select:focus {
+    outline: 2px solid #007acc;
+    outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .cell {
+        border-width: 2px;
+    }
+    
+    .status-indicator {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Soporte para reducción de movimiento */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
