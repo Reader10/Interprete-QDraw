@@ -30,6 +30,7 @@ const TOKEN_TYPES = {
     PROGRAMA: 'PROGRAMA',
     PROCEDIMIENTO: 'PROCEDIMIENTO',
     SI: 'SI',
+    ENTONCES: 'ENTONCES',
     SINO: 'SINO',
     REPETIR: 'REPETIR',
     VECES: 'VECES',
@@ -90,6 +91,7 @@ class QdrawTokenizer {
             'programa': TOKEN_TYPES.PROGRAMA,
             'procedimiento': TOKEN_TYPES.PROCEDIMIENTO,
             'si': TOKEN_TYPES.SI,
+            'entonces': TOKEN_TYPES.ENTONCES,
             'sino': TOKEN_TYPES.SINO,
             'repetir': TOKEN_TYPES.REPETIR,
             'veces': TOKEN_TYPES.VECES,
@@ -627,18 +629,23 @@ class QdrawParser {
         this.expect(
             TOKEN_TYPES.LPAREN,
             "Después de 'si' debe ir '(' para abrir la condición.\n" +
-            "Ejemplo: si(HayBolita) { ... }"
+            "Ejemplo: si(estaVacia?) entonces { ... }"
         );
         const condition = this.parseCondition();
         this.expect(
             TOKEN_TYPES.RPAREN,
             "Después de la condición debe ir ')' para cerrarla.\n" +
-            "Ejemplo: si(HayBolita) { ... }"
+            "Ejemplo: si(estaVacia?) entonces { ... }"
+        );
+        this.expect(
+            TOKEN_TYPES.ENTONCES,
+            "Falta la palabra 'entonces' después de la condición.\n" +
+            "Ejemplo: si(estaVacia?) entonces { ... }"
         );
         this.expect(
             TOKEN_TYPES.LBRACE,
-            "Después de ')' debe ir '{' para abrir el bloque.\n" +
-            "Ejemplo: si(HayBolita) { PintarRojo }"
+            "Después de 'entonces' debe ir '{' para abrir el bloque.\n" +
+            "Ejemplo: si(estaVacia?) entonces { PintarRojo }"
         );
         
         const thenBody = this.parseStatements();
@@ -832,6 +839,9 @@ class QdrawInterpreter {
     }
     
     limpiar() {
+        if (this.estaVacia()) {
+            throw new Error(`BOOM: Intentó limpiar (despintar) una celda que ya estaba vacía en la posición (${this.headX}, ${this.headY})`);
+        }
         this.setCellColor(this.headX, this.headY, COLORS.EMPTY);
     }
     
@@ -1103,7 +1113,7 @@ class QdrawExecutor {
     
     delay() {
         const delays = QDRAW_CONFIG.ANIMATION_DELAYS;
-        const speed = this.interpreter.speed || 3;
+        const speed = this.interpreter.speed !== undefined ? this.interpreter.speed : 3;
         
         let ms;
         if (speed === 0 || speed === '0') {

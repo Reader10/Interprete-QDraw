@@ -128,7 +128,7 @@ class QdrawApp {
         // Configurar Tokenizador
         monaco.languages.setMonarchTokensProvider('qdraw', {
             keywords: [
-                'programa', 'procedimiento', 'si', 'sino', 
+                'programa', 'procedimiento', 'si', 'entonces', 'sino', 
                 'repetir', 'veces'
             ],
             commands: [
@@ -747,10 +747,9 @@ class QdrawApp {
     }
 
     sanitizeCode(code) {
-        // Eliminar cualquier etiqueta HTML/script potencial (seguridad)
-        return code.replace(/<script.*?>.*?<\/script>/gis, '')
-                   .replace(/<.*?>/g, '')
-                   .substring(0, 500 * 1024); // Limitar a 500KB
+        // Limitamos a 500KB. Monaco Editor escapa automáticamente el contenido,
+        // por lo que no es necesario eliminar caracteres HTML.
+        return code.substring(0, 500 * 1024);
     }
 
     // async loadExample() {
